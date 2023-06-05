@@ -5,6 +5,7 @@
     <title>TripGuide--旅游路线页</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/mystyle.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -25,11 +26,18 @@
     </script>
 </head>
 <body>
-<div class="top_hw clearfix">
-        <div class="top_h clearfix" style="height: 80px; width: 100%; font-size: medium">
-        <div class="top_hl"><span>欢迎来到TripGuide，就在此刻启程吧！</span></div>
-        <div class="top_hr"><a th:href="@{/register}">会员注册</a> | <a th:href="@{/goLogin}">登录</a>
-        </div>
+<div class="sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 bg-white">
+    <img src="/images/logo.svg" class="w-9 h-9 object-contain mr-5"/>
+    <div class="w-full flex items-center max-w-7xl mx-auto">
+        <p class='text-black text-[18px] font-bold cursor-pointer flex '>
+            TripGuide &nbsp;
+            <span class='sm:block hidden'> | Your trip assistant</span>
+        </p>
+    </div>
+    <div class="float right max-w-7xl mx-auto">
+        <button class="font-semibold rounded-full border border-slate-200 text-slate-900" type="button">
+            <a th:href="@{/goLogin}"> 登录</a>
+        </button>
     </div>
 </div>
 <img height="320px" width="100%" src="images/herobg.png"/>
