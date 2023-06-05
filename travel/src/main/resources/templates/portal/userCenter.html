@@ -8,17 +8,13 @@
 </head>
 <body>
 <div class="top_hw clearfix">
-    <div class="top_h clearfix">
-        <div class="top_hl"><span>欢迎来到TripGuide，让你的梦想全程免费自由行！</span> 预定热线：<b>0571-63322269</b></div>
-        <div class="top_hr"><a th:if="${session.userName==null}" th:href="@{/register}">会员注册</a>  |  <span th:if="${session.userName!=null}" th:text="'欢迎你，'+${session.userName}"></span><a th:if="${session.userName==null}" th:href="@{/goLogin}">登录</a>  |  <a th:if="${session.userName!=null}" th:href="@{/goLogout}">退出</a></div>
+        <div class="top_h clearfix" style="height: 80px; width: 100%; font-size: medium">
+        <div class="top_hl"><span>欢迎来到TripGuide，就在此刻启程吧！</span></div>
+        <div class="top_hr"><a th:href="@{/register}">会员注册</a> | <a th:href="@{/goLogin}">登录</a>
+        </div>
     </div>
 </div>
-<div class="head_w">
-    <div class="head_t clearfix">
-        <div class="logo"><img src="images/logo.png"/></div>
-        <div class="rx_line"><img src="images/rx.jpg"/></div>
-    </div>
-</div>
+<img height="320px" width="100%" src="images/herobg.png"/>
 <div class="mainNav clearfix">
     <ul class="Nav_ul">
         <li><a th:href="@{/index}">首页</a><img src="images/nav_line.jpg"/></li>

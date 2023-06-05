@@ -5,7 +5,7 @@
             <homepage_hero></homepage_hero>
             <div class="card-container absolute inset-0 top-[200px]">
                 <el-button class="animate-bounce" type="success" size="large">
-                    <a href="http://localhost:8080/index">即刻出发！</a>
+                    <a href="http://localhost:8080/travelRoute">即刻出发！</a>
                 </el-button>
             </div>
 <!--            <homepage_search></homepage_search>-->

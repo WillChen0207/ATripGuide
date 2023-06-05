@@ -49,10 +49,7 @@
                 </template>
             </el-popover>
         </div>
-        <p class="font-bold" v-show="isLogin">{{logUser}}</p>
-        <el-button type="primary" v-show="!isLogin" @click="handleLogin">
-            登录 / 注册
-        </el-button>
+
     </nav>
 </template>
 
