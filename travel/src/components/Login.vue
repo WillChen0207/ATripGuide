@@ -3,7 +3,7 @@
     <el-form class="login-container">
       <h1 class="title">用户登陆</h1>
       <el-form-item >
-        <el-input type="text" v-model="username"  placeholder="用户账号" autocomplete="off"></el-input>
+        <el-input type="text" v-model="userName"  placeholder="用户账号" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item >
         <el-input type="password" v-model="password" placeholder="用户密码" autocomplete="off"></el-input>
@@ -25,29 +25,26 @@ export default{
   name:'Login',
   data:function(){
     return {
-      username:'admin',
-      password:'123'
+      userName:'user',
+      password:'123456'
     }
   },
   methods:{
     doLogin:function(){
-      let username=this.username;
+      let userName=this.userName;
       let password=this.password;
-      // let url="http://localhost:8080/";
+      let url="http://localhost:5173/api/loging";
       let params={
-        username:username,
+        userName:userName,
         password:password,
-        methodName:'userLogin'
       }
-      //发起ajax请求-GET(注意参数必须保存到params属性中)
-      axios.get(url,{params:params}).then(resp=>{
-        this.$message({
-          type: resp.data.code==1?'success':'error',
-          message:resp.data.msg
-        });
-      }).catch(err=>{
-        console.log(err);
-      })
+        axios.get(url,{params:params}).then(res => {
+            console.log(res)
+        })
+            .catch(error =>
+                console.log(error)
+            )
+
 
 
 

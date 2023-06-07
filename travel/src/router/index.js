@@ -6,7 +6,7 @@ import Register from "../components/Register.vue";
 //路由数组
 const routes = [
     {   path: '/', redirect: '/homepage'},
-    {   path: '/homepage', component: Homepage  },
+    {   path: '/homepage', component: Homepage},
     {   path: '/login', component: Login},
     {   path: '/register', component: Register}
 ]

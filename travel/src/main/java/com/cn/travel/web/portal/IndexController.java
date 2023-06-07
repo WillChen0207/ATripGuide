@@ -25,11 +25,12 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping("/goLogin")
-    public ModelAndView goLogin(HttpSession httpSession){
-        if(Tools.notEmpty(httpSession.getAttribute("userName"))){
-            return new ModelAndView("portal/index");
+    public void goLogin(HttpSession httpSession, HttpServletRequest request, HttpServletResponse response){
+        try {
+            response.sendRedirect("http://localhost:5173/login");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return new ModelAndView("portal/login");
     }
 
     @RequestMapping("/goLogout")

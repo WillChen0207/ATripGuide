@@ -6,11 +6,19 @@ import com.cn.travel.utils.Tools;
 import com.cn.travel.web.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
+@CrossOrigin(origins = {"*"})
+@ResponseBody
 @Controller
 public class LoginController extends BaseController {
 
@@ -18,38 +26,49 @@ public class LoginController extends BaseController {
     AdminService adminService;
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request){
+    public void login(HttpServletRequest request, HttpServletResponse response){
         Object user = request.getSession().getAttribute("admin");
         if (user != null) {
-            return REDIRECT+"/manager/index";
+            try {
+                request.getRequestDispatcher("http://localhost:8080/manager/index").forward(request,response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return "login";
+        try {
+            request.getRequestDispatcher("http://localhost:5173/login").forward(request,response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("/loging")
-    public String loging(String userName,String password,RedirectAttributes redirectAttributes,HttpServletRequest request){
+    public Boolean loging(@RequestParam("userName") String userName,
+                          @RequestParam("password") String password,
+                          RedirectAttributes redirectAttributes,
+                          HttpServletRequest request){
         if (Tools.isEmpty(userName)||Tools.isEmpty(password)){
             redirectAttributes.addFlashAttribute("message","用户名密码不得为空!");
-            return REDIRECT+"/login";
+            return false;
         }
         try {
             Admin admin = adminService.login(userName, password);
             if (Tools.isEmpty(admin)){
                 redirectAttributes.addFlashAttribute("message","用户名不存在或密码错误!");
-                return REDIRECT+"/login";
+                return false;
             }else{
                 if (admin.getState() == 1) {
                     request.getSession().setAttribute("admin", admin);
-                    return REDIRECT+"/manager/index";
+                    return true;
                 } else {
                     redirectAttributes.addFlashAttribute("message","账户已被停用!");
-                    return REDIRECT+"/login";
+                    return false;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return REDIRECT+"/login";
+        return false;
     }
 
     @RequestMapping("/logout")
