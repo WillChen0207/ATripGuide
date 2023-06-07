@@ -46,7 +46,8 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">简介</label>
 			<div class="layui-input-block">
-				<textarea class="layui-textarea"  readonly="readonly" th:text="${entity.summary}" id="summary" name="summary" lay-verify="required" placeholder="请输入简介">			</div>
+				<textarea class="layui-textarea"  readonly="readonly" th:text="${entity.summary}" id="summary" name="summary" lay-verify="required" placeholder="请输入简介">
+                    </div>
 		</div>
 		<div class="layui-form-item" th:if="${entity.introUrl != null}">
 			<label class="layui-form-label">内容图片</label>

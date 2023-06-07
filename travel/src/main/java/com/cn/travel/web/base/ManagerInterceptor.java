@@ -11,10 +11,10 @@ public class ManagerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object user = request.getSession().getAttribute("admin");
-        if (user == null) {
-            response.sendRedirect("/login");
-            return false;
-        }
+//        if (user == null) {
+//            response.sendRedirect("/login");
+//            return false;
+//        }
 
         return true;
     }
