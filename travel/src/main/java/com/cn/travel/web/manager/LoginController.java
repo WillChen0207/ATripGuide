@@ -23,31 +23,38 @@ public class LoginController extends BaseController {
     AdminService adminService;
 
     @RequestMapping("/login")
-    public void login(HttpServletRequest request, HttpServletResponse response){
-
+    public String login(HttpServletRequest request){
+        Object user = request.getSession().getAttribute("admin");
+        if (user != null) {
+            return REDIRECT+"/manager/index";
+        }
+        return "login";
     }
 
-    @ResponseBody
     @RequestMapping("/loging")
-    public boolean loging(HttpServletRequest request){
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
+    public String loging(String userName,String password,RedirectAttributes redirectAttributes,HttpServletRequest request){
+        if (Tools.isEmpty(userName)||Tools.isEmpty(password)){
+            redirectAttributes.addFlashAttribute("message","用户名密码不得为空!");
+            return REDIRECT+"/login";
+        }
         try {
             Admin admin = adminService.login(userName, password);
             if (Tools.isEmpty(admin)){
-                return false;
+                redirectAttributes.addFlashAttribute("message","用户名不存在或密码错误!");
+                return REDIRECT+"/login";
             }else{
                 if (admin.getState() == 1) {
                     request.getSession().setAttribute("admin", admin);
-                    return true;
+                    return REDIRECT+"/manager/index";
                 } else {
-                    return false;
+                    redirectAttributes.addFlashAttribute("message","账户已被停用!");
+                    return REDIRECT+"/login";
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return REDIRECT+"/login";
     }
 
     @RequestMapping("/logout")

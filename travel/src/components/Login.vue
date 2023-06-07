@@ -37,7 +37,7 @@
                 let paramStr = qs.parse(userinfo);
                 console.log(paramStr);
                 axios.post(
-                    'http://localhost:8080/loging',
+                    'http://localhost:8080/userLoging',
                     qs.parse(userinfo),
                     {
                         headers: {

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<title>旅游信息管理系统</title>
+	<title>TripGuide</title>
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
@@ -20,7 +20,6 @@
 		<!-- 顶部 -->
 		<div class="layui-header header">
 			<div class="layui-main">
-				<a href="#" class="logo">旅游信息管理系统</a>
 
 			    <div class="weather">
 			    	<div id="tp-weather-widget"></div>
@@ -44,15 +43,9 @@
 			    </div>
 			    <!-- 顶部右侧菜单 -->
 			    <ul class="layui-nav top_menu">
-			    	<li class="layui-nav-item showNotice" id="showNotice">
-						<a href="javascript:;"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
-					</li>
 			    	<li class="layui-nav-item">
 			    		<a th:href="@{/logout}"><i class="iconfont icon-loginout"></i> 退出</a>
 			    	</li>
-					<li class="layui-nav-item lockcms">
-						<a href="javascript:;"><i class="iconfont icon-lock1"></i><cite>锁屏</cite></a>
-					</li>
 					<li class="layui-nav-item">
 						<a href="javascript:;">
 							<img src="/images/touxiang.jpg" class="layui-circle" width="35" height="35"/>
@@ -92,16 +85,6 @@
 		</div>
 	</div>
 
-	<!-- 锁屏 -->
-	<div class="admin-header-lock" id="lock-box" style="display: none;">
-		<div class="admin-header-lock-img"><img src="/images/face.jpg"/></div>
-		<div class="admin-header-lock-name" id="lockUserName" th:text="${session.admin.name}">root</div>
-		<div class="input_btn">
-			<input type="password" class="admin-header-lock-input layui-input" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />
-			<button class="layui-btn" id="unlock">解锁</button>
-		</div>
-		<p>请输入“123456”，否则不会解锁成功哦！！！</p>
-	</div>
 	<!-- 移动导航 -->
 	<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>
