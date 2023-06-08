@@ -35,6 +35,7 @@ public class UserPortalController extends BaseController {
                 return false;
             }else{
                 if (user.getState() == 1) {
+
                     httpSession.setAttribute("userName",userName);
                     return true;
                 } else {
